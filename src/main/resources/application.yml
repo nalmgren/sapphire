@@ -1,0 +1,9 @@
+server:
+  port: 5000
+
+datasource:
+  db:
+    driver: "org.postgresql.Driver"
+    databaseUrl: "jdbc:postgresql://localhost:5432/sapphire?useSSL=false"
+    username: "sapphire"
+    password: "s@ph1r3user"
