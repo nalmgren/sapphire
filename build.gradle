@@ -13,6 +13,7 @@ buildscript {
         classpath("org.springframework.boot:spring-boot-gradle-plugin:${springBootVersion}")
         classpath("org.jetbrains.kotlin:kotlin-gradle-plugin:${kotlin_version}")
         classpath("org.jetbrains.kotlin:kotlin-allopen:${kotlin_version}")
+        classpath group: 'io.ebean', name: 'ebean-gradle-plugin', version: '11.9.1'
     }
 }
 
@@ -21,6 +22,7 @@ plugins {
 }
 
 apply plugin: 'java'
+apply plugin: 'io.ebean'
 apply plugin: 'kotlin'
 apply plugin: 'kotlin-spring'
 apply plugin: "org.springframework.boot"
@@ -43,9 +45,10 @@ dependencies {
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: springBootVersion
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: springBootVersion
     compile group: 'org.springframework.boot', name: 'spring-boot-starter-test', version: springBootVersion
+    compile group: 'org.springframework.boot', name: 'spring-boot-starter-logging', version: springBootVersion
     compile group: 'io.ebean', name: 'ebean', version: '11.15.4'
     compile group: 'org.flywaydb', name: 'flyway-core', version: '3.0'
-    compile group: 'postgresql', name: 'postgresql', version: '8.4-702.jdbc4'
+    compile group: 'org.postgresql', name: 'postgresql', version: '42.2.2'
 
     testCompile group: 'com.nhaarman', name: 'mockito-kotlin', version: '1.5.0'
     testCompile group: 'com.jayway.restassured', name: 'rest-assured', version: '2.8.0'
@@ -63,4 +66,8 @@ compileTestKotlin {
 
 task wrapper(type: Wrapper) {
     gradleVersion = "4.5"
+}
+
+bootRun {
+    systemProperties = System.properties
 }

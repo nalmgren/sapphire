@@ -1,9 +1,21 @@
+spring:
+  profiles:
+    default: "prod"
+
 server:
   port: 5000
 
 datasource:
   db:
-    driver: "org.postgresql.Driver"
-    databaseUrl: "jdbc:postgresql://localhost:5432/sapphire?useSSL=false"
     username: "sapphire"
-    password: "s@ph1r3user"
+    host: ${DATABASE_HOST}
+    password: ${DATABASE_PASSWORD}
+
+logging:
+  level:
+    root: "INFO"
+  file: "/var/log/sapphire.log"
+
+ebean:
+  search:
+    packages: "com.gleam.model"
